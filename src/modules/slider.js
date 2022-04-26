@@ -2,7 +2,7 @@ const slider = () => {
   const sliderBlock = document.querySelector('.portfolio-content');
   const sliders = sliderBlock.querySelectorAll('.portfolio-item');
   const dots = sliderBlock.querySelectorAll('.dot');
-  const timerPeriod = 2000;
+  const timerPeriod = 1500;
   let currentSlide = 0;
   let interval;
 
@@ -46,8 +46,29 @@ const slider = () => {
   },true);
 
   sliderBlock.addEventListener('click', (e) => {
-      //arrow-left, arrow-right, portfolio-btn prev
-    
+    e.preventDefault();
+    if (!e.target.matches('.portfolio-btn, .dot')) {
+      return;
+    }
+    prevSlide(sliders,currentSlide,'portfolio-item-active');
+    prevSlide(dots,currentSlide,'dot-active');
+
+    if (e.target.matches('#arrow-left')) {
+      currentSlide --;
+      currentSlide = currentSlide < 0 ? sliders.length - 1 : currentSlide;
+    } else if (e.target.matches('#arrow-right')) {
+      currentSlide ++;
+      currentSlide = currentSlide >= sliders.length ? 0 : currentSlide;
+    } else if (e.target.matches('.dot')) {
+      dots.forEach((dot,index) => {
+        if (dot === e.target) {
+          currentSlide = index;
+        }
+      });
+    }
+
+    nextSlide(sliders,currentSlide,'portfolio-item-active');
+    nextSlide(dots,currentSlide,'dot-active');
   });
 
   startSlider();
