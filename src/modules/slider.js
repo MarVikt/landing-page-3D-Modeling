@@ -1,10 +1,23 @@
 const slider = () => {
   const sliderBlock = document.querySelector('.portfolio-content');
   const sliders = sliderBlock.querySelectorAll('.portfolio-item');
-  const dots = sliderBlock.querySelectorAll('.dot');
+  let dots = sliderBlock.querySelectorAll('.dot');
   const timerPeriod = 1500;
   let currentSlide = 0;
   let interval;
+
+  const createDots = () => {
+    const dotsArea = document.querySelector('.portfolio-dots');
+    sliders.forEach((elem,index) => {
+      const newDot = document.createElement('li');
+      newDot.classList.add('dot');
+      if (index === 0) {
+        newDot.classList.add('dot-active');
+      }
+      dotsArea.append(newDot);
+    });
+    dots = sliderBlock.querySelectorAll('.dot');
+  };
 
   const prevSlide = (elems,index,strClass) => {
     elems[index].classList.remove(strClass);
@@ -71,6 +84,7 @@ const slider = () => {
     nextSlide(dots,currentSlide,'dot-active');
   });
 
+  createDots();
   startSlider();
 };
 export default slider;
