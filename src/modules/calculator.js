@@ -1,53 +1,35 @@
 const calculator = () => {
   const calcBlock = document.querySelector('.calc-block');
-  const calcInputs = calcBlock.querySelectorAll('input.calc-item');
-  let calcTotal = calcBlock.querySelector('#total');
-    let typeRoom = 0;
-    let square = 0;
-    let count = 1;
-    let days = 10;
-    let totalSum = 0;
+  const calcTotal = calcBlock.querySelector('#total');
+  let typeRoom = 0;
+  let square = 0;
+  let count = 1;
+  let days = 1;
+  let totalSum = 0;
 
   calcBlock.addEventListener('input', (e) => {
-
     if (e.target.matches('select') && e.target.selectedIndex !== 0) {
       typeRoom = +e.target.value;
-      console.log(typeRoom);
+      typeRoom = typeRoom === 1 ? 100 : (typeRoom === 1.4 ? 120 * 1.4 : 110 * 2);
     } else if (e.target.matches('input')) {
       if(!/[^0-9]+/gi.test(e.target.value)) {
-        e.target.style.color = '#464646';
-        if (e.target.classList.contains('calc-square') && Number(e.target.value) !== 0) {
-          square = +e.target.value;
+        if (e.target.classList.contains('calc-square')) {
+          square = +e.target.value > 0 ? +e.target.value : 0;
         }
-        if (e.target.classList.contains('calc-count') && Number(e.target.value) > 0) {
-          count = +e.target.value;
+        if (e.target.classList.contains('calc-count')) {
+          count = +e.target.value > 0 ? +e.target.value : 1;
+          count = count > 1 ? (1 + count * 0.1) : 1;
         }
-        if (e.target.classList.contains('calc-day') && Number(e.target.value) > 0) {
-          days = +e.target.value;
+        if (e.target.classList.contains('calc-day')) {
+          days = +e.target.value > 0 ? +e.target.value : 10;
+          days = days >= 10 ? 1 : (days >= 5 ? 1.5 : 2);
         }
       } else {
-        e.target.style.color = 'red';
+        e.target.value = e.target.value.replace(/[^0-9]+/gi,"");
       }
     } 
-    totalSum = typeRoom * square * count * days;
+    totalSum = Math.round(typeRoom * square * count * days);
     calcTotal.textContent = totalSum;
   });
-
-//&& 
-// 
-//
-
-  // calcInputs.forEach((elem) => {
-  //   elem.addEventListener('change', () => {
-  //     if(!/[^0-9]+/gi.test(elem.value) && Number(elem.value) !== 0) {
-  //       alert('в форме введено число');
-  //       elem.style.color = '#464646';
-  //     } else {
-  //       alert('введите число');
-  //       elem.style.color = 'red';
-  //     }
-  //   });
-  // });
 };
-
 export default calculator;
