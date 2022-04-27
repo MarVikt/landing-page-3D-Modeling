@@ -8,9 +8,13 @@ const calculator = () => {
   let totalSum = 0;
 
   calcBlock.addEventListener('input', (e) => {
-    if (e.target.matches('select') && e.target.selectedIndex !== 0) {
-      typeRoom = +e.target.value;
-      typeRoom = typeRoom === 1 ? 100 : (typeRoom === 1.4 ? 120 * 1.4 : 110 * 2);
+    if (e.target.matches('select')) {
+      if (e.target.selectedIndex !== 0) {
+        typeRoom = +e.target.value;
+        typeRoom = typeRoom === 1 ? 100 : (typeRoom === 1.4 ? 120 * 1.4 : 110 * 2);
+      } else {
+        typeRoom = 0; 
+      }
     } else if (e.target.matches('input')) {
       if(!/[^0-9]+/gi.test(e.target.value)) {
         if (e.target.classList.contains('calc-square')) {
