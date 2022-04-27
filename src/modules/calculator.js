@@ -6,6 +6,7 @@ const calculator = () => {
   let count = 1;
   let days = 1;
   let totalSum = 0;
+  let i = 0;
 
   calcBlock.addEventListener('input', (e) => {
     if (e.target.matches('select')) {
@@ -33,7 +34,22 @@ const calculator = () => {
       }
     } 
     totalSum = Math.round(typeRoom * square * count * days);
-    calcTotal.textContent = totalSum;
+    console.log(totalSum);
+
+    // анимация суммы (убрать после приемки задания)
+    if (totalSum > 0) {
+      i = 0;
+      let idInterval = setInterval(() => {
+        i ++;
+        calcTotal.textContent = i;
+        if (i === totalSum) clearInterval(idInterval);
+      },5);
+    } else {
+      calcTotal.textContent = totalSum;
+    }
+    
+    // простой вывод суммы (вернуть после приемки задания)
+    // calcTotal.textContent = totalSum;
   });
 };
 export default calculator;
