@@ -1,7 +1,6 @@
 const modal = () => {
   const buttons = document.querySelectorAll(".popup-btn");
   const popup = document.querySelector(".popup");
-  const popupClose = popup.querySelector(".popup-close");
   const content = popup.querySelector(".popup-content");
 
   function showModal() {
@@ -21,8 +20,10 @@ const modal = () => {
     btn.addEventListener("click",showModal);
   });
 
-  popupClose.addEventListener("click", () => {
-    popup.style.display = "none";
+  popup.addEventListener('click', (e) => {
+    if (!e.target.closest('.popup-content') || e.target.matches('.popup-close')) {
+      popup.style.display = "none";
+    }
   });
 };
 
