@@ -34,7 +34,7 @@ const calculator = () => {
       }
     } 
     totalSum = Math.round(typeRoom * square * count * days);
-    console.log(totalSum);
+    console.log(totalSum);  // убрать после приемки задания
 
     // анимация суммы (убрать после приемки задания)
     if (totalSum > 0) {
@@ -47,7 +47,7 @@ const calculator = () => {
     } else {
       calcTotal.textContent = totalSum;
     }
-    
+
     // простой вывод суммы (вернуть после приемки задания)
     // calcTotal.textContent = totalSum;
   });
