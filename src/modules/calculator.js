@@ -1,3 +1,5 @@
+import{animate} from './helpers';
+
 const calculator = () => {
   const calcBlock = document.querySelector('.calc-block');
   const calcTotal = calcBlock.querySelector('#total');
@@ -34,21 +36,19 @@ const calculator = () => {
       }
     } 
     totalSum = Math.round(typeRoom * square * count * days);
-    console.log(totalSum);  // убрать после приемки задания
 
-    // анимация суммы (убрать после приемки задания)
-    if (totalSum > 0) {
-      i = 0;
-      let idInterval = setInterval(() => {
-        i ++;
-        calcTotal.textContent = i;
-        if (i === totalSum) clearInterval(idInterval);
-      },5);
-    } else {
-      calcTotal.textContent = totalSum;
-    }
+    // анимация суммы 
+    animate({
+      duration: 500,
+      timing(timeFraction) {
+        return timeFraction;
+      },
+      draw(progress) {
+        calcTotal.textContent = Math.round(progress * totalSum);
+      },
+    });
 
-    // простой вывод суммы (вернуть после приемки задания)
+    // простой вывод суммы 
     // calcTotal.textContent = totalSum;
   });
 };
