@@ -1,3 +1,4 @@
+import{animate} from './helpers';
 const modal = () => {
   const buttons = document.querySelectorAll(".popup-btn");
   const popup = document.querySelector(".popup");
@@ -6,13 +7,15 @@ const modal = () => {
   function showModal() {
     popup.style.display = "block";
     if (window.screen.availWidth > 767) {
-      let count = 0;
-      content.style.opacity = "0";
-      let idInterval = setInterval(() => {
-        count ++; 
-        content.style.opacity = String(count / 10);
-        if (count == 10) clearInterval(idInterval);
-      },30);
+      animate({
+        duration: 500,
+        timing(timeFraction) {
+          return Math.pow(timeFraction, 2);
+        },
+        draw(progress) {
+          content.style.opacity = progress;
+        }
+      });
     }
   }
 
