@@ -8,7 +8,6 @@ const calculator = () => {
   let count = 1;
   let days = 1;
   let totalSum = 0;
-  let i = 0;
 
   calcBlock.addEventListener('input', (e) => {
     if (e.target.matches('select')) {
