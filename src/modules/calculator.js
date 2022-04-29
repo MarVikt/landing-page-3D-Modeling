@@ -38,7 +38,7 @@ const calculator = () => {
 
     // анимация суммы 
     animate({
-      duration: 500,
+      duration: 400,
       timing(timeFraction) {
         return timeFraction;
       },
