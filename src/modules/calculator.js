@@ -38,7 +38,7 @@ const calculator = () => {
 
     // анимация суммы 
     animate({
-      duration: 500,
+      duration: 505,
       timing(timeFraction) {
         return timeFraction;
       },
@@ -51,4 +51,5 @@ const calculator = () => {
     // calcTotal.textContent = totalSum;
   });
 };
+
 export default calculator;
