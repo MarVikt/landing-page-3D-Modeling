@@ -43,7 +43,7 @@ const calculator = () => {
         i ++;
         calcTotal.textContent = i;
         if (i === totalSum) clearInterval(idInterval);
-      },5);
+      },3);
     } else {
       calcTotal.textContent = totalSum;
     }
