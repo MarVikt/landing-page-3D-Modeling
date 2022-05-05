@@ -1,45 +1,10 @@
+import{checkValue} from './helpers';
+
 const validation = () => {
-  // const isEmail = /^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/gi;
-  const isEmail = /[^\-\.\!\`\*\'\@\w]+/gi;
   const form1 = document.getElementById('form1');
   const form2 = document.getElementById('form2');
   const form3 = document.getElementById('form3');
 
-  const checkValue = (name,mail,phone,message) => {
-    let isError = false;
-
-    if (!/[^а-я\-\s]+/gi.test(name) && name.replace(/[\-\s]/g,"") !== '') {
-      alert('в форме имя введено верно');
-    } else {
-        alert('введите имя кириллицей, можно использовать дефис и пробел');
-        isError = true;
-    }
-
-    if (!isEmail.test(mail)) {
-      alert('в форме email правильный');
-    } else {
-     alert('введите правильный email');
-      isError = true;
-    }
-
-    if (!/[^\d\(\)\-]+/gi.test(phone)) {
-      alert('в форме телефон правильный');
-    } else {
-      alert('введите телефон, используя цифры, круглые скобки и тире');
-      isError = true;
-    }
-
-    if (message !== '') {
-      if (!/[^а-я\-\s]+/gi.test(message)) {
-        alert('в форме сообщение введено верно');
-      } else {
-          alert('введите сообщение кириллицей, можно использовать дефис и пробел');
-          isError = true;
-      }
-    }
-
-    return isError;
-  };
 
   form1.addEventListener('submit', (event) => {
     event.preventDefault();
