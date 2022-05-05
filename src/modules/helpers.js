@@ -20,7 +20,7 @@ const animate = ({timing, draw, duration}) =>{
 };
 
 // проверка полей формы
-const checkValue = (dataForm) => {
+const checkValueForm = (dataForm) => {
   // const isEmail = /^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/gi;
   const isEmail = /[^\-\.\!\`\*\'\@\w]+/gi;
   let isValid = true;
@@ -69,4 +69,4 @@ const checkValue = (dataForm) => {
   return isValid;
 };
 
-export{animate,checkValue};
+export{animate,checkValueForm};

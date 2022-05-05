@@ -27,6 +27,10 @@ const modal = () => {
   popup.addEventListener('click', (e) => {
     if (!e.target.closest('.popup-content') || e.target.matches('.popup-close')) {
       popup.style.display = "none";
+      let statusBlock = document.getElementById('status-form3');
+      if (statusBlock) {
+        statusBlock.remove();
+      }
     }
   });
 };
