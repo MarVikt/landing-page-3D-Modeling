@@ -27,6 +27,7 @@ const timer = (deadline) => {
   };
 
   let resultTimes = getTimes();
+  updateClock(resultTimes.remainingTime);
 
   let idInterval = setInterval(() => {
     updateClock(resultTimes.remainingTime);

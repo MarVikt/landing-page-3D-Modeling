@@ -19,6 +19,16 @@ const sendForm = ({formId,someElems=[]}) => {
     });
   };
 
+  const deleteBlock = (block,msec) => {
+    return new Promise((resolve,reject) => {
+      setTimeout(() => {
+        if (block) {
+          block.remove();
+        }
+      }, msec);
+    });
+  };
+
   try {
     if (!form) {
       throw new Error (`Форма ${formId} отсутствует на странице`);
@@ -66,6 +76,7 @@ const sendForm = ({formId,someElems=[]}) => {
             formElements.forEach(input => {
               input.value = '';
             });
+            deleteBlock(statusBlock,5000);
             console.log(data);
           })
           .catch(error => {
