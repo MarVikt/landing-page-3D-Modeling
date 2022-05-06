@@ -36,29 +36,25 @@ const sendForm = ({formId,someElems=[]}) => {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
 
-      const loadText = 'Загрузка...';
-      const errorText = 'Ошибка отправки';
-      const successText = 'Спасибо! Наш менеджер свяжется с Вами!';
-      let statusBlock = document.getElementById(`status-${formId}`);
-
       const formData = new FormData(form);
       const formBody = {};
+      let statusBlock = document.getElementById(`status-${formId}`);
   
-      if (!statusBlock) {
-        statusBlock = document.createElement('div');
-        statusBlock.id = `status-${formId}`;
-        form.append(statusBlock);
-      }
-      if (formId === 'form3') {
-        statusBlock.style.color = "#fff";
-      }
-      statusBlock.textContent = loadText;
-      
       formData.forEach((val, key) => {
         formBody[key] = val;
       });
   
       if (checkValueForm(formBody)) {
+        if (!statusBlock) {
+          statusBlock = document.createElement('h3');
+          statusBlock.id = `status-${formId}`;
+          form.append(statusBlock);
+        }
+        if (formId === 'form3') {
+          statusBlock.style.color = "#fff";
+        }
+        statusBlock.textContent = 'Загрузка...';
+        
         someElems.forEach(elem => {
           const element = document.getElementById(elem.id);
           if (elem.type === 'block') {
@@ -68,9 +64,10 @@ const sendForm = ({formId,someElems=[]}) => {
           }
         });
   
+        statusBlock.textContent = 'Отправка...';
         sendData(formBody)
           .then(data => {
-            statusBlock.textContent = successText;
+            statusBlock.textContent = 'Спасибо! Наш менеджер свяжется с Вами!';
             // очистим поля формы
             const formElements = form.querySelectorAll('input');
             formElements.forEach(input => {
@@ -81,10 +78,10 @@ const sendForm = ({formId,someElems=[]}) => {
           })
           .catch(error => {
             console.log(error.message);
-            statusBlock.textContent = errorText;
+            statusBlock.textContent = 'Ошибка отправки';
           });
       } else {
-        alert('данные формы не валидны');
+        // alert('данные формы не валидны');
       }
     });
   } catch (error) {
