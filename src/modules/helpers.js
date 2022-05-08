@@ -19,7 +19,7 @@ const animate = ({timing, draw, duration}) =>{
   });
 };
 
-// проверка полей формы
+// проверка полей формы (dataForm - это Object, а не FormData)
 const checkValueForm = (dataForm) => {
   // const isEmail = /^(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}$/gi;
   const isEmail = /[\-\.\w]+@([\w]+\.)+[\w]+/gi;

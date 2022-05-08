@@ -7,6 +7,7 @@ const modal = () => {
 
   function showModal() {
     popup.style.display = "block";
+    document.body.style.overflow = "hidden";
     if (window.screen.availWidth > 767) {
       animate({
         duration: 500,
@@ -27,6 +28,7 @@ const modal = () => {
   popup.addEventListener('click', (e) => {
     if (!e.target.closest('.popup-content') || e.target.matches('.popup-close')) {
       popup.style.display = "none";
+      document.body.style.overflow = "auto";
       let statusBlock = document.getElementById('status-form3');
       if (statusBlock) {
         statusBlock.remove();
